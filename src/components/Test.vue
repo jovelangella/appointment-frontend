@@ -57,7 +57,6 @@
                     outlined
                     background-color="white"
                     label="Name"
-                    required
                  />
 
                 </v-col>
@@ -76,7 +75,6 @@
                     outlined
                     background-color="white"
                     label="Email"
-                    required
                   />
 
                 </v-col>
@@ -289,12 +287,12 @@ export default {
         required: value => !!value || 'Required.',
         clnt_nme: [
           value => !!value || 'Name is required.',
-          value => value.length <= 25 || 'Name must be less than 25 characters'
+          value => value.length <= 50 || 'Name must be less than 50 characters'
         ],
         cel_numb: [
-          value => /^[0-9]+$/.test(value) || 'Must be number',
+          value => /^[0-9]+$/.test(value) || 'Input must be a number',
           value => !!value || 'Mobile number is required.',
-          value => value.length >= 11 || 'Mobile number must be 11 digits'
+          value => value.length === 11 || 'Mobile number must be 11 digits'
         ],
         emailadd: [
           value => !!value || 'E-mail is required',
@@ -359,10 +357,11 @@ export default {
       this.loading = true
       this.btn_disabled = true
       axios.post('/appointment/create', this.form)
-        .then(() => {
+        .then(response => {
           this.loading = false
           this.snackbar = true
           this.$refs.form.reset()
+          response.status === 200 ? this.btn_disabled = false : this.btn_disabled = true
         })
         .catch(e => {
           const backendErrors = e.response.data.errors
