@@ -5,13 +5,12 @@
     <v-container>
 
       <v-card
-        color="#eee"
         class="mx-auto mt-5"
         max-width="500"
         :loading="loading"
 
       >
-
+        <!-- App bar -->
         <v-app-bar
           elevation="4"
           color="#c5003e"
@@ -20,20 +19,25 @@
 
         >
 
-          <v-app-bar-title>Strip Appointment Time</v-app-bar-title>
+          <v-app-bar-title class="appbartitle">Strip Appointment Time</v-app-bar-title>
 
             <v-spacer />
 
-            <v-icon
-              color="purple darken-3"
-              large
-
+            <!-- Dark mode settings -->
+            <v-btn
+              icon
+              @click="toggleTheme"
+              flat
             >
-              mdi-account
 
-            </v-icon>
+            <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-4</v-icon>
+
+            <v-icon v-else>mdi-brightness-5</v-icon>
+
+            </v-btn>
 
           </v-app-bar>
+          <!-- end of app bar -->
 
         <v-card-text>
 
@@ -50,12 +54,11 @@
 
                 <v-col cols="12">
 
-                  <v-text-field
+                  <v-text-field class="name"
                     v-model="form.clnt_nme"
                     :rules="rules.clnt_nme"
                     dense
                     outlined
-                    background-color="white"
                     label="Name"
                  />
 
@@ -68,12 +71,11 @@
 
                 <v-col class="6">
 
-                  <v-text-field
+                  <v-text-field class="email"
                     v-model="form.emailadd"
                     :rules="rules.emailadd"
                     dense
                     outlined
-                    background-color="white"
                     label="Email"
                   />
 
@@ -90,7 +92,6 @@
                     counter
                     dense
                     outlined
-                    background-color="white"
                     label="Mobile Number"
                   />
 
@@ -112,7 +113,6 @@
                     @change="retrieveLocationTime"
                     dense
                     outlined
-                    background-color="white"
                     label="Store Location"
                   >
 
@@ -145,7 +145,6 @@
                         dense
                         readonly
                         outlined
-                        background-color="white"
                         v-bind="attrs"
                         v-on="on"
                       ></v-text-field>
@@ -155,7 +154,7 @@
                     <v-date-picker
                       v-model="form.apnt_dte"
                       :min="this.currentDay"
-                      @input="apnt_dte_Menu = false, firstDayOfWeek, retrieveLocationTime()"
+                      @input="apnt_dte_Menu = false, dayNumber, retrieveLocationTime()"
                     ></v-date-picker>
 
                   </v-menu>
@@ -174,7 +173,6 @@
                     :rules="[value => !!value || 'Appointment time is required.']"
                     dense
                     outlined
-                    background-color="white"
                     label="Time"
                   />
 
@@ -191,7 +189,6 @@
                     v-model="form.treatmnt"
                     dense
                     outlined
-                    background-color="white"
                     label="Treatment"
                   />
 
@@ -209,7 +206,6 @@
                     counter
                     outlined
                     dense
-                    background-color="white"
                     label="Message"
                     :rules="rules.message"
                   />
@@ -218,17 +214,19 @@
 
               </v-row>
 
-              <!-- submit -->
+              <!-- buttons -->
               <v-card-actions class="mt-n5">
 
                   <v-spacer />
 
+                  <!-- reset button -->
                   <v-btn @click="reset" small>
 
                     Reset
 
                   </v-btn>
 
+                  <!-- submit button -->
                   <v-btn @click="submit" small :disabled="!formHasErrors">
 
                     Submit
@@ -323,7 +321,7 @@ export default {
     }
   },
   computed: {
-    firstDayOfWeek () {
+    dayNumber () {
       var date = new Date(this.form.apnt_dte)
       return date.getDay()
     },
@@ -343,7 +341,7 @@ export default {
       axios.get('/time', {
         params: {
           locn_cde: this.form.locn_cde,
-          day_numb: this.firstDayOfWeek
+          day_numb: this.dayNumber
         }
       })
         .then(response => {
@@ -370,10 +368,29 @@ export default {
     },
     reset () {
       this.$refs.form.reset()
+    },
+    toggleTheme () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   },
+
   created () {
     this.retrieveLocations()
   }
 }
+
 </script>
+<style lang ="scss">
+/* @import'@/assets/styles.scss'; */
+@import url('http://fonts.cdnfonts.com/css/gotham');
+.appbartitle {
+  font-family: 'Gotham', sans-serif;
+  text-align: center;
+  color:white;
+}
+
+.v-text-field {
+  font-family: 'Gotham', sans-serif;
+}
+
+</style>
