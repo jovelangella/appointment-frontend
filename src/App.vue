@@ -30,7 +30,7 @@
 
       </v-btn>
 
-      <v-btn icon href="https://www.twitter.com/stripmanila/" target="_blnank">
+      <v-btn icon href="https://www.twitter.com/stripmanila/" target="_blank">
 
         <v-icon large color="purple darken-3">
 
@@ -73,25 +73,33 @@
     </v-app-bar>
 
     <v-main>
-      <v-row>
+      <v-row align="center" justify="center">
+        <v-col align="center" justify="center">
 
-        <v-img
-          alt="strip"
-          contain
-          class="mx-auto my-12"
-          :src="images.company"
-          height="300px"
-          width="200px"
-        />
+          <v-img class="mx-16"
+            alt="strip"
+            contain
+            :src="images.company"
+            height="400px"
+            width="300px"
+          />
+
+        </v-col>
 
       </v-row>
+      <v-row align="center" justify="center" class="mt-n16">
+         <v-col align="center" justify="center">
+          <h1>Hey Strip Mates!</h1>
+         </v-col>
+      </v-row>
 
-       <!-- <h1 class="purple--text text-md-center"
-          >Hey Strip Mates!</h1>
-       <h1 class="purple--text text-md-center"
-       > Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1>
+       <v-row align="center" justify="center">
+         <v-col md="6">
+          <h1 class="text-justify.text-center"> Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1>
+         </v-col>
+        </v-row>
 
-       <v-spacer /> -->
+       <v-spacer />
 
       <!-- <HelloWorld/> -->
       <!-- <Form/> -->
@@ -121,3 +129,14 @@ export default {
   })
 }
 </script>
+
+<style lang ="scss">
+/* @import'@/assets/styles.scss'; */
+@import url('http://fonts.cdnfonts.com/css/gotham');
+h1{
+  font-family: 'Gotham Thin', sans-serif;
+  text-align: center;
+  color:#4A148C;
+}
+
+</style>
