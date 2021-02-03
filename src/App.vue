@@ -1,12 +1,9 @@
 <template>
   <v-app>
     <v-app-bar
-      absolute
       app
-      color="white"
       dense
       flat
-      hide-on-scroll
     >
     <v-spacer />
 
@@ -76,7 +73,7 @@
       <v-row align="center" justify="center">
         <v-col align="center" justify="center">
 
-          <v-img class="mx-16"
+          <v-img class="mb-n10"
             alt="strip"
             contain
             :src="images.company"
@@ -89,13 +86,13 @@
       </v-row>
       <v-row align="center" justify="center" class="mt-n16">
          <v-col align="center" justify="center">
-          <h1>Hey Strip Mates!</h1>
+          <h1 class="stripH1">Hey Strip Mates!</h1>
          </v-col>
       </v-row>
 
        <v-row align="center" justify="center">
          <v-col md="6">
-          <h1 class="text-justify.text-center"> Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1>
+          <h1 class="text-justify.text-center stripH1"> Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1>
          </v-col>
         </v-row>
 
@@ -133,10 +130,10 @@ export default {
 <style lang ="scss">
 /* @import'@/assets/styles.scss'; */
 @import url('http://fonts.cdnfonts.com/css/gotham');
-h1{
+.stripH1{
   font-family: 'Gotham Thin', sans-serif;
   text-align: center;
-  color:#4A148C;
+  color:#858585;
 }
 
 </style>
