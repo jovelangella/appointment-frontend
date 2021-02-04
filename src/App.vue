@@ -88,6 +88,8 @@
     </v-app-bar>
 
     <v-main>
+
+      <v-container>
       <v-row align="center" justify="center">
         <v-col align="center" justify="center">
 
@@ -101,7 +103,7 @@
           </template>
 
           <template v-else>
-            <v-img class="mb-n10"
+            <v-img class="mb-n16"
               contain
               :src="images.browhaus"
               height="400px"
@@ -141,6 +143,7 @@
       <!-- <HelloWorld/> -->
       <!-- <Form/> -->
       <Test/>
+      </v-container>
     </v-main>
   </v-app>
 </template>
