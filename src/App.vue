@@ -7,92 +7,132 @@
     >
     <v-spacer />
 
-      <v-btn icon href="https://www.instagram.com/stripmanila" target="_blank">
+      <!-- facebook strip-->
+      <template v-if="header">
+        <v-btn icon href="https://www.facebook.com/stripmanila/" target="_blank">
 
-        <v-icon large color="purple darken-3">
+          <v-icon large color="purple darken-3">
 
-         mdi-instagram
+          mdi-facebook
 
-        </v-icon>
+          </v-icon>
 
-      </v-btn>
+        </v-btn>
+      </template>
 
-       <v-btn icon href="https://www.facebook.com/stripmanila/" target="_blank">
+       <!-- facebook browhaus-->
+      <template v-else>
+        <v-btn icon href="https://www.facebook.com/BrowhausManila/" target="_blank">
 
-        <v-icon large color="purple darken-3">
+          <v-icon large color="lime darken-3">
 
-         mdi-facebook
+          mdi-facebook
 
-        </v-icon>
+          </v-icon>
 
-      </v-btn>
+        </v-btn>
+      </template>
 
-      <v-btn icon href="https://www.twitter.com/stripmanila/" target="_blank">
+      <!-- twitter strip -->
+      <template v-if="header">
+        <v-btn icon href="https://twitter.com/stripmanila/" target="_blank">
 
-        <v-icon large color="purple darken-3">
+          <v-icon large color="purple darken-3">
 
-         mdi-twitter
+          mdi-twitter
 
-        </v-icon>
+          </v-icon>
 
-      </v-btn>
+        </v-btn>
+      </template>
 
-      <!-- <div class="d-flex align-center"> -->
-        <!-- <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        /> -->
+       <!-- twitter browhaus-->
+      <template v-else>
+        <v-btn icon href="https://twitter.com/browhausmanila" target="_blank">
 
-        <!-- <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        /> -->
-      <!-- </div> -->
+          <v-icon large color="lime darken-3">
 
-      <!-- <v-spacer></v-spacer> -->
+          mdi-twitter
 
-      <!-- <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn> -->
+          </v-icon>
+
+        </v-btn>
+      </template>
+
+       <!-- instagram strip -->
+      <template v-if="header">
+        <v-btn icon href="https://www.instagram.com/stripmanila/" target="_blank">
+
+          <v-icon large color="purple darken-3">
+
+          mdi-instagram
+
+          </v-icon>
+
+        </v-btn>
+      </template>
+
+       <!-- instagram browhaus-->
+      <template v-else>
+        <v-btn icon href="https://www.instagram.com/browhausmanila/" target="_blank">
+
+          <v-icon large color="lime darken-3">
+
+          mdi-instagram
+
+          </v-icon>
+
+        </v-btn>
+      </template>
+
     </v-app-bar>
 
     <v-main>
       <v-row align="center" justify="center">
         <v-col align="center" justify="center">
 
-          <v-img class="mb-n10"
-            alt="strip"
-            contain
-            :src="images.company"
-            height="400px"
-            width="300px"
-          />
+          <template v-if="header">
+            <v-img class="mb-n10"
+              contain
+              :src="images.strip"
+              height="400px"
+              width="300px"
+            />
+          </template>
+
+          <template v-else>
+            <v-img class="mb-n10"
+              contain
+              :src="images.browhaus"
+              height="400px"
+              width="300px"
+            />
+          </template>
 
         </v-col>
 
       </v-row>
       <v-row align="center" justify="center" class="mt-n16">
          <v-col align="center" justify="center">
-          <h1 class="stripH1">Hey Strip Mates!</h1>
+           <template v-if="header">
+              <h1 class="stripH1">Hey Strip Mates!</h1>
+           </template>
+           <template v-else>
+              <h1 class="browhausH1">Hey Brow Buddy!</h1>
+           </template>
+
          </v-col>
       </v-row>
 
        <v-row align="center" justify="center">
          <v-col md="6">
-          <h1 class="text-justify.text-center stripH1"> Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1>
+          <!-- <h1 class="text-justify.text-center stripH1"> Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1> -->
+          <template v-if="header">
+            <h1 class="text-justify.text-center stripH1"> Welcome to the Strip: Ministry of Waxing, the Global Authority in Hair Removal with 48 parlours in 12 major capital cities worldwide.</h1>
+          </template>
+          <template v-else>
+            <h1 class="text-justify.text-center browhausH1"> Welcome to your one-stop brow and lash grooming salon built for you, the image-conscious urbanite who demands not just function, but function and style.</h1>
+          </template>
          </v-col>
         </v-row>
 
@@ -120,8 +160,10 @@ export default {
   },
 
   data: () => ({
+    header: false,
     images: {
-      company: require('@/assets/strip.jpg')
+      strip: require('@/assets/strip.jpg'),
+      browhaus: require('@/assets/browhaus.png')
     }
   })
 }
@@ -130,10 +172,18 @@ export default {
 <style lang ="scss">
 /* @import'@/assets/styles.scss'; */
 @import url('http://fonts.cdnfonts.com/css/gotham');
+@import url('https://www.cssfontstack.com/Helvetica');
 .stripH1{
   font-family: 'Gotham Thin', sans-serif;
   text-align: center;
-  color:#858585;
+  color:#6A1B9A;
+}
+.browhausH1{
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-weight: 100;
+  font-size: 35px;
+  text-align: center;
+  color:#9E9D24;
 }
 
 </style>
