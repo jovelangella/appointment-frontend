@@ -190,6 +190,7 @@
                     dense
                     outlined
                     label="Treatment"
+                    :rules="[value => !!value || 'Treatment is required.']"
                   />
 
                 </v-col>
@@ -349,7 +350,7 @@ export default {
         })
     },
     submit () {
-      this.$refs.form.validate() ? this.save() : this.$refs.form.validate()
+      this.$refs.form.validate() ? this.save() : this.formHasErrors = true
     },
     save () {
       this.loading = true
@@ -359,11 +360,13 @@ export default {
           this.loading = false
           this.snackbar = true
           this.$refs.form.reset()
-          response.status === 200 ? this.btn_disabled = false : this.btn_disabled = true
+          // response.status === 200 ? this.btn_disabled = false : this.btn_disabled = true
+          this.btn_disabled = false
         })
         .catch(e => {
-          const backendErrors = e.response.data.errors
-          this.errors.push(backendErrors)
+          // const backendErrors = e.response.data.errors
+          // this.errors.push(backendErrors)
+          this.btn_disabled = true
         })
     },
     reset () {
